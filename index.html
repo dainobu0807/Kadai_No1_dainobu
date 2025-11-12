@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@3.6.11/dist/vuetify.min.css'>
+<link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'><link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> 
+</head>
+<body>		
+	<div id="app">
+  <v-app>
+    <v-main>
+      <v-container>
+				<h3>文章を入力して測定ボタンを押してください。</h3>
+				<h3>感情スコアを表示します。</h3>
+        <v-textarea 
+						label="文章を入力" 
+						v-model="inputtext"
+						clearable label="Label" 
+						variant="outlined">			
+				</v-textarea>
+				
+        <v-btn
+				@click="enterText"
+				stacked>	
+					
+					<span class="fa fa-check"></span> 
+					測定する
+        </v-btn> 
+
+    <div v-if="message" class="message-box">
+      {{ message }}
+    </div>
+				
+     <!--    <v-row
+          class="mb-3 mt-3"
+          justify="center"
+        >
+          <v-btn
+            append-icon="$vuetify"
+            variant="plain"
+            @click="clearAll"
+          >
+            文章をクリア
+          </v-btn>
+        </v-row>
+
+       <v-row
+          class="mb-3 mt-3"
+          justify="center"
+          v-for="(history, i) in history"
+          :key="i"
+        >
+          {{ i }}
+        </v-row>  -->
+				
+      </v-container>
+    </v-main>
+  </v-app>
+</div>
+  <canvas id="myScatterChart"></canvas>
+  <!-- CDN -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+  
+  <script>
+  // グラフ作成
+  var ctx = document.getElementById("myScatterChart");
+  var myScatterChart = new Chart(ctx, {
+    type: 'scatter', 
+    data: { 
+      datasets: [
+        {
+          label: '感情スコア',
+          data: [{}],
+					pointRadius: 15,
+          backgroundColor: 'RGBA(225,95,150, 1)',
+        }, ]
+    },
+    options:{
+      title: {
+        display: true,
+      },
+      scales: {
+        xAxes: [{        
+          scaleLabel: {             
+            display: true,          
+            labelString: 'ポジティブ度（score）' 
+          },
+          ticks: {
+            suggestedMin: -1.0,
+            suggestedMax: +1.0,
+            stepSize: 0.1,
+            callback: function(value, index, values){
+              return  value
+            }
+          }
+        }],
+        yAxes: [{        
+          scaleLabel: {             
+            display: true,          
+            labelString: '感情の強さ（magnitude）' 
+          },
+          ticks: {
+            suggestedMax: 3,
+            suggestedMin: 0,
+            stepSize: 0.5,
+            callback: function(value, index, values){
+              return  value
+            }
+          }
+        }]
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vuetify@3.6.11/dist/vuetify.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/axios@1.6.2/dist/axios.min.js'></script><script  src="./script.js"></script>
+
+  </body>
+  
+</html>
